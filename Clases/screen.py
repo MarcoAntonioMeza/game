@@ -2,6 +2,9 @@ import pygame
 
 
 pygame.init()
+pygame.mixer.init()
+pygame.mixer.music.load('audio/music2.mp3')
+pygame.mixer.music.play(-1) 
 
 clock = pygame.time.Clock()
 
@@ -38,3 +41,7 @@ def draw_level(font,msg):
     text_rect.center = (SCREEN_WIDTH // 2, 40)
     # Dibujar texto en la pantalla
     screen.blit(text, text_rect)
+
+def mensaje(msg):
+    screen_msg = pygame.display.set_mode(SCREEN_HEIGHT,SCREEN_HEIGHT)
+    pygame.display.set_caption('')

@@ -77,9 +77,10 @@ class Player(pygame.sprite.Sprite):
     
     # jump
     if self.jump and not self.in_air:
-        self.vel_y = -14
+        self.vel_y = -12
         self.jump = False
         self.in_air = True
+        pygame.mixer.Sound('audio/jump.wav').play()
     
     #apply gravity
     self.vel_y += GRAVITY
@@ -102,25 +103,29 @@ class Player(pygame.sprite.Sprite):
         collisions = pygame.sprite.spritecollide(self, self.enemy, True)
         if collisions:
             self.health-=1
+            pygame.mixer.Sound('audio/zombie.mp3').play()
 
     if self.vida:
         collisions = pygame.sprite.spritecollide(self, self.vida, True)
         if collisions:
           self.health+=1
+          pygame.mixer.Sound('audio/coin.mp3').play()
           
     if self.star:
         collisions = pygame.sprite.spritecollide(self, self.star,True)
         if collisions:  
           self.nivel+=1
-          #if not self.nivel //2 ==0:
-           #  self.rect.y += 0
+          pygame.mixer.Sound('audio/ganar.mp3').play()
+          #if self.nivel >= 3:
+            #self.star.draw(screen)
+              
+          
+          
+
             
     #update rectangle position
     self.rect.x += dx
     self.rect.y += dy
-    
-    # Actualizar la posición del jugador
-    #self.rect.x += dx
     
     pygame.display.flip()
 
@@ -274,3 +279,7 @@ class Star(pygame.sprite.Sprite):
     self.rect = self.image.get_rect()
     self.rect.x = x
     self.rect.y = y
+
+  def reset_star_position(self):
+    self.rect.x = self.rect.x
+    self.rect.y = self.rect.y

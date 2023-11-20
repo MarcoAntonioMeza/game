@@ -20,17 +20,19 @@ for i in range(1, 5):
 bg_width = bg_images[0].get_width()
 
 
-def draw_bg(msg = ""):
+def draw_bg():
   for x in range(10):
     speed = 0
     for i in bg_images:
       screen.blit(i, ((x * bg_width) - scroll * speed+2, 0))
       speed += 0.1 
- 
+
 def  main():
   global scroll 
+  #Nivel 1 y dos
   camino,zombie,vida,star = caminos_nvl_1('img/ground.png','img/corazon.png')
-  player = Player('character','maleAdventurer',50, SCREEN_HEIGHT-50, .2, 2,
+  star2=caminos_nvl_3('img/ground.png','img/corazon.png')
+  player = Player('character','maleAdventurer',50, SCREEN_HEIGHT-50, .2, 3,
                   enemy=zombie,vida=vida,
                   star=star
                   )
@@ -40,7 +42,6 @@ def  main():
 
   # Configuración de la fuente
   letra = pygame.font.Font(None, 56)
-  
   
   #game loop
   run = True
@@ -56,22 +57,43 @@ def  main():
 
     #draw msg
     msg = f'Nivel {player.nivel}  Vidas: {player.health}'
-
     draw_level(letra,msg)
     #zombie.draw(screen)
     if  player.nivel % 2   == 0:
       player.nivel_piso = SCREEN_HEIGHT//2-55
     else:
       player.nivel_piso = SCREEN_HEIGHT-50
-      #player.rect.x = 0
-      #player.rect.y = SCREEN_HEIGHT-50
-    
-    for i in zombie:
-      if  player.nivel >= 3:
+    nvl = player.nivel
+
+    if nvl <= 2:
+      for i in zombie:
+        if nvl == 2:
+          i.update(player)
+        i.update_animation()
+        i.draw()
+    elif nvl >=3 and nvl <=4:
+      for i in zombie:
+        if nvl == 3:
+          i.speed = .9
+          #player.speed +=
+        elif nvl == 4:
+          i.speed = 2
+          #player.speed += 1
+
         i.update(player)
+        i.update_animation()
+        i.draw()
+        
+        star2.draw(screen)
+        #pygame.time.delay(500)
+        #player.rect.y = 1
+        player.star = star2
       
-      i.update_animation()
-      i.draw()
+      #star.draw(screen)
+        
+
+
+    
 
     #update player actions
     if player.alive:
