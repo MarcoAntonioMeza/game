@@ -24,9 +24,11 @@ def caminos_nvl_1(img,img_vida):
     zombie.add(Enemy(1050, nvl2-nvl, scale=scale, speed=speed))
     zombie.add(Enemy(SCREEN_WIDTH//2, nvl2-nvl, scale=scale, speed=speed))
     #vida.add(Corazon(320,nvl1-tam,80,80,img_vida))
+    for i in range(100,SCREEN_WIDTH,300):
+        vida.add(Corazon(i+100,nvl1-tam,80,80,img_vida))
     for i in range(50,SCREEN_WIDTH,200):
         zombie.add(Enemy(i+120, nvl1-nvl, scale=scale, speed=speed))
-        vida.add(Corazon(i+320,nvl1-tam,80,80,img_vida))
+        #vida.add(Corazon(i+100,nvl1-tam,80,80,img_vida))
         vida.add(Corazon(i+520,nvl2-tam,80,80,img_vida))
         
         #zombie.add(Player('enemy','zombie',i+150,nvl2-50, .2,0))

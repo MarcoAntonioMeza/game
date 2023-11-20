@@ -20,15 +20,19 @@ class Player(pygame.sprite.Sprite):
 
     self.nivel_piso = SCREEN_HEIGHT-50 
 
+    #Vidas
+    self.health = 3
 
-    self.health = 5
+    #Objetos para la colision
     self.vida = vida
     self.enemy= enemy
     self.star = star
 
+    #Nivel
     self.nivel = 1
     
-    #self.paths = paths
+    self.pausa = False
+    
 
     temp_list = []
     for i in range(2):
@@ -91,13 +95,10 @@ class Player(pygame.sprite.Sprite):
     dy += self.vel_y
 
     #check for collision with floor
-    a = (self.rect.bottom + dy > self.nivel_piso)  
-    #b =(self.rect.bottom + dy > SCREEN_HEIGHT//2-55)
+    a = (self.rect.bottom + dy > self.nivel_piso)
     if a:
       dy = self.nivel_piso - self.rect.bottom
       self.in_air = False  
-        #self.in_air = False
-      #self.jump = False
           
     if self.enemy:
         collisions = pygame.sprite.spritecollide(self, self.enemy, True)
@@ -116,12 +117,9 @@ class Player(pygame.sprite.Sprite):
         if collisions:  
           self.nivel+=1
           pygame.mixer.Sound('audio/ganar.mp3').play()
+          self.pausa = True
           #if self.nivel >= 3:
             #self.star.draw(screen)
-              
-          
-          
-
             
     #update rectangle position
     self.rect.x += dx
