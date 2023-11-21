@@ -68,7 +68,6 @@ def mensaje(nvl):
                 sys.exit()
             elif event.type == pygame.KEYDOWN  :
                 if event.key == pygame.K_RETURN:
-                    #esperar = False
                     i+=1
                     img = f"img/nvl-{nvl}/ser-{i}.png"
 
@@ -77,6 +76,7 @@ def mensaje(nvl):
             screen_msg.blit(image, (0, 0))
             pygame.display.flip()
         except:
+            #pass
             esperar =  False
     
     return True
