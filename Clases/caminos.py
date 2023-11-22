@@ -68,4 +68,11 @@ def caminos_nvl_3(img,img_vida):
         
     
     return star
-    
+
+
+def draw_leaf():
+    leaf = pygame.sprite.Group()
+    num_leaf  = 90
+    leaves = [Leaf() for _ in range(num_leaf)]
+    leaf.add(leaves)
+    return leaf

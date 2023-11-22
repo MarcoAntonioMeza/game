@@ -281,3 +281,39 @@ class Star(pygame.sprite.Sprite):
   def reset_star_position(self):
     self.rect.x = self.rect.x
     self.rect.y = self.rect.y
+
+
+class Leaf(pygame.sprite.Sprite): 
+  def __init__(self):
+    pygame.sprite.Sprite.__init__(self)
+    self.image = self._cargar_img(True)
+    self.rect = self.image.get_rect()
+    self.rect.centerx = random.randint(0, SCREEN_WIDTH)
+    self.rect.centery = random.randint(-50, -10)
+    self.speed_y = random.uniform(1, 3)  # Velocidad inicial
+    self.gravity = 0 
+
+
+  def _cargar_img(self,is_alfa =True):
+    hoja = random.randint(1,5)
+    img = f'img/leaf/hoja_{hoja}.png'
+    image = pygame.image.load(img)
+    scale_factor = 0.3 
+    image = pygame.transform.scale(image,(int(image.get_width() * scale_factor),
+                                              int(image.get_height() * scale_factor)))
+    if is_alfa:
+      image = image.convert_alpha()
+    else:
+      image = image.convert()
+    
+    return image
+  
+  def update(self):
+    self.speed_y += self.gravity  # Aplicar gravedad
+    self.rect.y += self.speed_y
+    if self.rect.y > SCREEN_HEIGHT:
+      self.rect.y = random.randint(-50, -10)
+      self.rect.x = random.randint(0, SCREEN_WIDTH)
+      self.speed_y = random.uniform(1, 3)
+
+    

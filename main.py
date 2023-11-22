@@ -39,6 +39,9 @@ def  main():
   moving_left = False
   moving_right = False
 
+  #leaf
+  leaves = draw_leaf()
+
   #mensaje(player.nivel)
 
 
@@ -55,10 +58,15 @@ def  main():
       #draw world
       draw_bg()
       player.update_animation()
+      leaves.draw(screen)
       player.draw()
       camino.draw(screen)
       vida.draw(screen)
       star.draw(screen)
+      leaves.update()
+
+      
+
 
       #draw msg
       msg = f'Nivel {player.nivel}  Vidas: {player.health}'

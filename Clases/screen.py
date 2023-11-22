@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 
 pygame.init()
 pygame.mixer.init()
@@ -54,7 +55,7 @@ def mensaje(nvl):
         imagen = pygame.image.load(img)
         width = imagen.get_width()
         height = imagen.get_height()
-        print(f'width {width} height { height}')
+        #print(f'width {width} height { height}')
         imagen = pygame.transform.scale(imagen, (width,height))
         return imagen
     
@@ -81,3 +82,5 @@ def mensaje(nvl):
     
     return True
         
+
+
