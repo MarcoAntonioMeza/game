@@ -22,7 +22,6 @@ class Player(pygame.sprite.Sprite):
 
     #Vidas
     self.health = 3
-
     #Objetos para la colision
     self.vida = vida
     self.enemy= enemy

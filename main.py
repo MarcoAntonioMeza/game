@@ -20,6 +20,16 @@ for i in range(1, 5):
 bg_width = bg_images[0].get_width()
 
 
+def reiniciar_juego():
+    # Aquí colocas la lógica para reiniciar el juego
+    # Puedes volver a inicializar las variables, restablecer las vidas, etc.
+    # ...
+
+    # Luego, vuelves a llamar a la función principal
+    pygame.time.delay(1000) 
+    main()
+
+
 def draw_bg():
   for x in range(10):
     speed = 0
@@ -52,6 +62,10 @@ def  main():
   run = True
   is_paused = not mensaje(player.nivel)
   while run:
+    if player.health <= 0:
+        pygame.quit()  # Cerrar la ventana actual
+        #reiniciar_juego()  # Llamar a la función para reiniciar el juego
+        return
     if  not is_paused:
       is_paused = player.pausa
       clock.tick(FPS)
@@ -65,6 +79,7 @@ def  main():
       star.draw(screen)
       leaves.update()
 
+      
       
 
 
@@ -103,11 +118,6 @@ def  main():
           player.star = star2
         
         #star.draw(screen)
-          
-
-
-      
-
       #update player actions
       if player.alive:
         if player.in_air:
@@ -159,6 +169,9 @@ def  main():
       moving_left = False
       moving_right = False
   pygame.quit()
+
+
+
 
 if __name__ == '__main__':  
   main()

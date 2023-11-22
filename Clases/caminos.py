@@ -10,15 +10,15 @@ def caminos_nvl_1(img,img_vida):
     star = pygame.sprite.Group()
 
     
-    image = 'img/star.png'
+    image = 'img/trofeo.png'
     nvl1, nvl2,  = SCREEN_HEIGHT-50, SCREEN_HEIGHT//2-60
     scale = .15
     nvl  = 35
     tam = 40
     speed  = 0.6
 
-    star.add(Star(SCREEN_WIDTH-90,nvl1-80,80,80,image))
-    star.add(Star(0,nvl2-80,80,80,image))
+    star.add(Star(SCREEN_WIDTH-90,nvl1-50,50,50,image))
+    star.add(Star(0,nvl2-50,50,50,image))
 
     zombie.add(Enemy(250, nvl2-nvl, scale=scale, speed=speed))
     zombie.add(Enemy(1050, nvl2-nvl, scale=scale, speed=speed))
@@ -47,7 +47,7 @@ def caminos_nvl_3(img,img_vida):
     vida = pygame.sprite.Group()
     star = pygame.sprite.Group()
 
-    image = 'img/star.png'
+    image = 'img/trofeo.png'
     nvl1, nvl2 = SCREEN_HEIGHT-50, SCREEN_HEIGHT//2-60
     scale = .15
     nvl  = 100
