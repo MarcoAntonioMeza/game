@@ -21,7 +21,7 @@ class Player(pygame.sprite.Sprite):
     self.nivel_piso = SCREEN_HEIGHT-50 
 
     #Vidas
-    self.health = 3
+    self.health = 1
     #Objetos para la colision
     self.vida = vida
     self.enemy= enemy
@@ -299,7 +299,7 @@ class Leaf(pygame.sprite.Sprite):
     image = pygame.image.load(img)
     scale_factor = 0.3 
     image = pygame.transform.scale(image,(int(image.get_width() * scale_factor),
-                                              int(image.get_height() * scale_factor)))
+                                          int(image.get_height() * scale_factor)))
     if is_alfa:
       image = image.convert_alpha()
     else:

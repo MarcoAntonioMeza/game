@@ -3,12 +3,11 @@ from Clases.player import *
 from Clases.caminos import *
 
 clock = pygame.time.Clock()
-#define player action variables
-#player2 = Player('enemy','zombie',500, 344, .2, 0)
 
 x = 400
 y = 343
 scale = .2
+
 #define game variables
 scroll = 0
 
@@ -18,17 +17,6 @@ for i in range(1, 5):
   bg_image =pygame.transform.smoothscale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
   bg_images.append(bg_image)
 bg_width = bg_images[0].get_width()
-
-
-def reiniciar_juego():
-    # Aquí colocas la lógica para reiniciar el juego
-    # Puedes volver a inicializar las variables, restablecer las vidas, etc.
-    # ...
-
-    # Luego, vuelves a llamar a la función principal
-    pygame.time.delay(1000) 
-    main()
-
 
 def draw_bg():
   for x in range(10):
@@ -62,8 +50,17 @@ def  main():
   run = True
   is_paused = not mensaje(player.nivel)
   while run:
+    if player.nivel == 4:
+      #is_paused = False 
+      mensaje(5)
+      pygame.time.delay(1000)
+      pygame.quit()
+      sys.exit()
+
     if player.health <= 0:
-        pygame.quit()  # Cerrar la ventana actual
+        mensaje(6)
+        main()
+        #pygame.quit()  # Cerrar la ventana actual
         #reiniciar_juego()  # Llamar a la función para reiniciar el juego
         return
     if  not is_paused:
@@ -79,9 +76,6 @@ def  main():
       star.draw(screen)
       leaves.update()
 
-      
-      
-
 
       #draw msg
       msg = f'Nivel {player.nivel}  Vidas: {player.health}'
@@ -91,8 +85,9 @@ def  main():
         player.nivel_piso = SCREEN_HEIGHT//2-55
       else:
         player.nivel_piso = SCREEN_HEIGHT-50
-      nvl = player.nivel
+      
 
+      nvl = player.nivel
       if nvl <= 2:
         for i in zombie:
           if nvl == 2:
@@ -170,7 +165,9 @@ def  main():
       moving_right = False
   pygame.quit()
 
-
+def reiniciar_juego():
+    pygame.time.delay(1000) 
+    main()
 
 
 if __name__ == '__main__':  

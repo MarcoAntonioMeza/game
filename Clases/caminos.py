@@ -9,7 +9,6 @@ def caminos_nvl_1(img,img_vida):
     vida = pygame.sprite.Group()
     star = pygame.sprite.Group()
 
-    
     image = 'img/trofeo.png'
     nvl1, nvl2,  = SCREEN_HEIGHT-50, SCREEN_HEIGHT//2-60
     scale = .15

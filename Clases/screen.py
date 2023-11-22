@@ -16,7 +16,7 @@ RED = (255,0,0)
 FPS = 60
 
 #define game variables
-GRAVITY = .55
+GRAVITY = .65
 
 #create game window
 info = pygame.display.Info()
@@ -32,6 +32,14 @@ pygame.display.set_caption("CompuActual Game")
 icon = pygame.image.load('img/icono.png')  # o .png
 pygame.display.set_icon(icon)
 
+
+def cargar(img):
+        imagen = pygame.image.load(img)
+        width = imagen.get_width()
+        height = imagen.get_height()
+        #print(f'width {width} height { height}')
+        imagen = pygame.transform.scale(imagen, (width,height))
+        return imagen
 
 def draw_bgg():
     pygame.draw.line(screen, RED, (0, 370), (SCREEN_WIDTH, 370))
@@ -51,13 +59,7 @@ def mensaje(nvl):
     screen_msg = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
     #pygame.display.set_caption(f'Estas en el nivel {nvl}')
     
-    def cargar(img):
-        imagen = pygame.image.load(img)
-        width = imagen.get_width()
-        height = imagen.get_height()
-        #print(f'width {width} height { height}')
-        imagen = pygame.transform.scale(imagen, (width,height))
-        return imagen
+    
     
     esperar = True
     i = 1
@@ -77,10 +79,18 @@ def mensaje(nvl):
             screen_msg.blit(image, (0, 0))
             pygame.display.flip()
         except:
-            #pass
             esperar =  False
     
     return True
         
+def end():
+    pygame.init()
+    screen_msg = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+    img = 'img/nvl-5/ser-1.png'
+    image = cargar(img)
+
+
+
+    pass
 
 
