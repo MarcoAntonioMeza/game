@@ -29,7 +29,7 @@ def  main():
   global scroll 
   #Nivel 1 y dos
   camino,zombie,vida,star = caminos_nvl_1('img/ground.png','img/corazon.png')
-  star2=caminos_nvl_3('img/ground.png','img/corazon.png')
+  star2,enemy,vida2=caminos_nvl_3('img/ground.png','img/corazon.png')
   player = Player('character','maleAdventurer',50,
                   SCREEN_HEIGHT-50, .2, 3,
                   enemy=zombie,vida=vida, star=star
@@ -50,7 +50,7 @@ def  main():
   run = True
   is_paused = not mensaje(player.nivel)
   while run:
-    if player.nivel == 4:
+    if player.nivel == 5:
       #is_paused = False 
       mensaje(5)
       pygame.time.delay(1000)
@@ -60,8 +60,6 @@ def  main():
     if player.health <= 0:
         mensaje(6)
         main()
-        #pygame.quit()  # Cerrar la ventana actual
-        #reiniciar_juego()  # Llamar a la función para reiniciar el juego
         return
     if  not is_paused:
       is_paused = player.pausa
@@ -95,22 +93,31 @@ def  main():
           i.update_animation()
           i.draw()
       elif nvl >=3 and nvl <=4:
-        for i in zombie:
+        zombie.empty()
+        vida.empty()
+
+        for i in enemy:
           if nvl == 3:
             i.speed = .9
+            player.speed = 3.5
             #player.speed +=
           elif nvl == 4:
-            i.speed = 2
-            #player.speed += 1
+            player.speed = 3.6
+            i.speed = 3
 
+            #player.speed += 1
           i.update(player)
           i.update_animation()
           i.draw()
           
           star2.draw(screen)
+          enemy.draw(screen)
+          vida2.draw(screen)
           #pygame.time.delay(500)
           #player.rect.y = 1
           player.star = star2
+          player.enemy = enemy
+          player.vida = vida2
         
         #star.draw(screen)
       #update player actions

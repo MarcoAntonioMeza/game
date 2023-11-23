@@ -21,7 +21,7 @@ class Player(pygame.sprite.Sprite):
     self.nivel_piso = SCREEN_HEIGHT-50 
 
     #Vidas
-    self.health = 1
+    self.health = 5
     #Objetos para la colision
     self.vida = vida
     self.enemy= enemy
@@ -294,10 +294,10 @@ class Leaf(pygame.sprite.Sprite):
 
 
   def _cargar_img(self,is_alfa =True):
-    hoja = random.randint(1,5)
-    img = f'img/leaf/hoja_{hoja}.png'
+    hoja = random.randint(1,4)
+    img = f'img/leaf/leaf_{hoja}.png'
     image = pygame.image.load(img)
-    scale_factor = 0.3 
+    scale_factor = 0.4 
     image = pygame.transform.scale(image,(int(image.get_width() * scale_factor),
                                           int(image.get_height() * scale_factor)))
     if is_alfa:
