@@ -95,6 +95,13 @@ def  main():
       elif nvl >=3 and nvl <=4:
         zombie.empty()
         vida.empty()
+        star2.draw(screen)
+        enemy.draw(screen)
+        vida2.draw(screen)
+        
+        player.star = star2
+        player.enemy = enemy
+        player.vida = vida2
 
         for i in enemy:
           if nvl == 3:
@@ -110,14 +117,10 @@ def  main():
           i.update_animation()
           i.draw()
           
-          star2.draw(screen)
-          enemy.draw(screen)
-          vida2.draw(screen)
+        
           #pygame.time.delay(500)
           #player.rect.y = 1
-          player.star = star2
-          player.enemy = enemy
-          player.vida = vida2
+          
         
         #star.draw(screen)
       #update player actions
